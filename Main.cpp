@@ -18,6 +18,7 @@ int main() {
 		std::cout << "7) Replace client in table" << std::endl;
 		std::cout << "13) Sort table from first to last" << std::endl;
 		std::cout << "11) Erase clients from left to right" << std::endl;
+		std::cout << "12) Replace client in table from left to right" << std::endl;
 		std::cout << "13) Sort table from left to right" << std::endl;
 		std::cout << "14) Exit" << std::endl;
 		std::cin >> code;
@@ -76,6 +77,21 @@ int main() {
 				std::cin >> right;
 			} while (left < 0 || left > myT.Length() - 1 || right < 0 || right > myT.Length() - 1);
 			myT.Erase(myT.GetPntr(left), myT.GetPntr(right));
+			std::cout << std::endl;
+			break;
+		case 12:
+			std::cout << std::endl;
+			std::cout << "Enter old client for Replace:" << std::endl;
+			first.input();
+			std::cout << "Enter new client for Replace:" << std::endl;
+			second.input();
+			do {
+				std::cout << "Enter left position (from 0 to " << myT.Length() - 1 << "): ";
+				std::cin >> left;
+				std::cout << "Enter right position: (from 0 to " << myT.Length() - 1 << "): ";
+				std::cin >> right;
+			} while (left < 0 || left > myT.Length() - 1 || right < 0 || right > myT.Length() - 1);
+			myT.Replace(myT.GetPntr(left), myT.GetPntr(right), &first, &second);
 			std::cout << std::endl;
 			break;
 		case 13:

@@ -146,6 +146,19 @@ T* Table::GetPntr(int i) {
 	return &m[i];
 }
 
+// Замена всех вхождений клиента в таблице с индекса first по индекс last(не включительно)
+int Table::Replace(T* first, T* last, const T& oldClient, const T& newClient) {
+	int counter = 0;
+	for (T* i = first; i < last; i++) {
+		if ((*i)->equal(*oldClient)) {
+			(*i)->dispose();
+			(*i) = (newClient)->copy();
+			counter++;
+		}
+	}
+	return counter;
+}
+
 // Сортировка таблицы с индекса first, по индекс last(не включительно)
 void Table::Sort(int first, int last) {
 	if (first < 0 || last > GetSize() - 1) {

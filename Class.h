@@ -46,5 +46,6 @@ public:
 	T* GetPntr(int i);
 	// Индивидуальные функции
 	T* Erase(T* first, T* last);
+	int Replace(T* first, T* last, const T& oldClient, const T& newClient);
 	void Sort(int first, int last);
 };
