@@ -6,7 +6,8 @@ int main() {
 	std::cin >> size;
 	Table myT(size);
 	Client first, second;
-
+	Client F("a", "s", 2, 2), S("a", "s", 3, 2), Th("a", "s", 4, 2);
+	Client* arr[3] = { &F, &S ,&Th };
 	while (true) {
 		std::cout << "Select the program operation mode:" << std::endl;
 		std::cout << "1) Input table" << std::endl;
@@ -16,7 +17,7 @@ int main() {
 		std::cout << "5) Erase client from table" << std::endl;
 		std::cout << "6) Remove client from table" << std::endl;
 		std::cout << "7) Replace client in table" << std::endl;
-		std::cout << "13) Sort table from first to last" << std::endl;
+		std::cout << "8) Insert clients to table from array" << std::endl;
 		std::cout << "11) Erase clients from left to right" << std::endl;
 		std::cout << "12) Replace client in table from left to right" << std::endl;
 		std::cout << "13) Sort table from left to right" << std::endl;
@@ -66,6 +67,11 @@ int main() {
 			std::cout << "Enter new client for Replace:" << std::endl;
 			second.input();
 			myT.Replace(&first, &second);
+			std::cout << std::endl;
+			break;
+		case 8:
+			std::cout << std::endl;
+			myT.Insert(myT.GetPntr(0), &arr[0], &arr[2]);
 			std::cout << std::endl;
 			break;
 		case 11:

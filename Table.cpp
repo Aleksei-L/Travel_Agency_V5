@@ -141,6 +141,15 @@ int Table::Remove(const T& badClient) {
 	return n;
 }
 
+// Вставка массива клиентов в таблицу
+T* Table::Insert(T* pos, T* first_item, T* last_item) {
+	if (Length() < size) {
+		for (T* i=first_item;i<=last_item;i++)
+			*current++ = (*i)->copy();
+	}
+	return current;
+}
+
 // Возвращает указатель на i-тую ячейку таблицы
 T* Table::GetPntr(int i) {
 	return &m[i];

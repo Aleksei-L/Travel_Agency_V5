@@ -45,6 +45,7 @@ public:
 	int Remove(const T& badClient);
 	T* GetPntr(int i);
 	// Индивидуальные функции
+	T* Insert(T* pos, T* first_item, T* last_item);
 	T* Erase(T* first, T* last);
 	int Replace(T* first, T* last, const T& oldClient, const T& newClient);
 	void Sort(int first, int last);
