@@ -1,7 +1,7 @@
 #include "Class.h"
 
 int main() {
-	int size, code, position, begin, end;
+	int size, code, position, begin, end, left, right;
 	std::cout << "Enter Table's size: ";
 	std::cin >> size;
 	Table myT(size);
@@ -17,6 +17,8 @@ int main() {
 		std::cout << "6) Remove client from table" << std::endl;
 		std::cout << "7) Replace client in table" << std::endl;
 		std::cout << "13) Sort table from first to last" << std::endl;
+		std::cout << "11) Erase clients from left to right" << std::endl;
+		std::cout << "13) Sort table from left to right" << std::endl;
 		std::cout << "14) Exit" << std::endl;
 		std::cin >> code;
 		switch (code) {
@@ -63,6 +65,17 @@ int main() {
 			std::cout << "Enter new client for Replace:" << std::endl;
 			second.input();
 			myT.Replace(&first, &second);
+			std::cout << std::endl;
+			break;
+		case 11:
+			std::cout << std::endl;
+			do {
+				std::cout << "Enter left position (from 0 to " << myT.Length() - 1 << "): ";
+				std::cin >> left;
+				std::cout << "Enter right position: (from 0 to " << myT.Length() - 1 << "): ";
+				std::cin >> right;
+			} while (left < 0 || left > myT.Length() - 1 || right < 0 || right > myT.Length() - 1);
+			myT.Erase(myT.GetPntr(left), myT.GetPntr(right));
 			std::cout << std::endl;
 			break;
 		case 13:

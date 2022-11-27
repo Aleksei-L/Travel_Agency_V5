@@ -43,6 +43,8 @@ public:
 	int Search(const T& tempClient);
 	int Replace(const T& oldClient, const T& newClient);
 	int Remove(const T& badClient);
+	T* GetPntr(int i);
 	// Индивидуальные функции
+	T* Erase(T* first, T* last);
 	void Sort(int first, int last);
 };

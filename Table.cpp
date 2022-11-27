@@ -100,6 +100,17 @@ int Table::Search(const T& tempClient) {
 	return -1;
 }
 
+// Удаление массива элементов в таблице
+T* Table::Erase(T* first, T* last) {
+	for (T* i = first; i < last; i++) {
+		(*first)->dispose();
+		for (T* j = first; j < End(); j++)
+			*j = *(j + 1);
+		current--;
+	}
+	return last;
+}
+
 // Замена клиента в таблице
 int Table::Replace(const T& oldClient, const T& newClient) {
 	int counter = 0;
@@ -128,6 +139,11 @@ int Table::Remove(const T& badClient) {
 	}
 	current = i;
 	return n;
+}
+
+// Возвращает указатель на i-тую ячейку таблицы
+T* Table::GetPntr(int i) {
+	return &m[i];
 }
 
 // Сортировка таблицы с индекса first, по индекс last(не включительно)
