@@ -47,6 +47,7 @@ public:
 	int Describe(T* pntr);
 	// Индивидуальные функции
 	T* Insert(T* pos, T* first_item, T* last_item);
+	int Remove(T* first, T* last, T* first_item, T* last_item);
 	T* Search(T* first, T* last, T* first_item, T* last_item);
 	T* Erase(T* first, T* last);
 	int Replace(T* first, T* last, const T& oldClient, const T& newClient);

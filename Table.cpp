@@ -150,6 +150,32 @@ T* Table::Insert(T* pos, T* first_item, T* last_item) {
 	return current;
 }
 
+// Удаление всех клиентов содержащихся в массиве из таблицы в интервале first - last
+int Table::Remove(T* first, T* last, T* first_item, T* last_item) {
+	T* i = first, * badInterval = Search(first, last, first_item, last_item);
+
+	if (badInterval == NULL)
+		return 0;
+
+	int n = last_item - first_item + 1, shift = 0;
+
+	for (T* j = first; j < last; j++) {
+		if (!(*j)->equal(**badInterval)) {
+			*i++ = *j;
+		}
+		else {
+			while (shift != n) {
+				(*j)->dispose();
+				*j = *(j + shift + 1);
+				shift++;
+			}
+			current = j + 1;
+			return n;
+		}
+	}
+	return n;
+}
+
 // Поиск в таблице массива first_item - last_item
 T* Table::Search(T* first, T* last, T* first_item, T* last_item) {
 	for (T* i = first; i < last; i++) {

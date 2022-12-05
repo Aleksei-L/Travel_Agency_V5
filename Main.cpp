@@ -18,6 +18,7 @@ int main() {
 		std::cout << "6) Remove client from table" << std::endl;
 		std::cout << "7) Replace client in table" << std::endl;
 		std::cout << "8) Insert clients to table from array" << std::endl;
+		std::cout << "9) Remove client from table from left to right" << std::endl;
 		std::cout << "10) Search array in table" << std::endl;
 		std::cout << "11) Erase clients from left to right" << std::endl;
 		std::cout << "12) Replace client in table from left to right" << std::endl;
@@ -73,6 +74,17 @@ int main() {
 		case 8:
 			std::cout << std::endl;
 			myT.Insert(myT.GetPntr(0), &arr[0], &arr[2]);
+			std::cout << std::endl;
+			break;
+		case 9:
+			std::cout << std::endl;
+			do {
+				std::cout << "Enter left position (from 0 to " << myT.Length() - 1 << "): ";
+				std::cin >> left;
+				std::cout << "Enter right position: (from 0 to " << myT.Length() - 1 << "): ";
+				std::cin >> right;
+			} while (left < 0 || left > myT.Length() - 1 || right < 0 || right > myT.Length() - 1);
+			myT.Remove(myT.GetPntr(left), myT.GetPntr(right), &arr[0], &arr[2]);
 			std::cout << std::endl;
 			break;
 		case 10:
