@@ -144,15 +144,42 @@ int Table::Remove(const T& badClient) {
 // Вставка массива клиентов в таблицу
 T* Table::Insert(T* pos, T* first_item, T* last_item) {
 	if (Length() < size) {
-		for (T* i=first_item;i<=last_item;i++)
+		for (T* i = first_item; i <= last_item; i++)
 			*current++ = (*i)->copy();
 	}
 	return current;
 }
 
+// Поиск в таблице массива first_item - last_item
+T* Table::Search(T* first, T* last, T* first_item, T* last_item) {
+	for (T* i = first; i < last; i++) {
+		if ((*i)->equal(**first_item)) {
+			int shift = 0;
+			bool flag = false;
+			for (T* j = first_item; j <= last_item; j++) {
+				if ((*j)->equal(**(i + shift))) {
+					if (j == last_item && !flag)
+						return i;
+					shift++;
+				}
+				else {
+					shift++;
+					flag = true;
+				}
+			}
+		}
+	}
+	return NULL;
+}
+
 // Возвращает указатель на i-тую ячейку таблицы
 T* Table::GetPntr(int i) {
 	return &m[i];
+}
+
+// Возвращает индекс элемента в таблице по указатею на этот элемент
+int Table::Describe(T* pntr) {
+	return pntr - Begin();
 }
 
 // Замена всех вхождений клиента в таблице с индекса first по индекс last(не включительно)

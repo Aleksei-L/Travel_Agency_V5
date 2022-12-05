@@ -18,6 +18,7 @@ int main() {
 		std::cout << "6) Remove client from table" << std::endl;
 		std::cout << "7) Replace client in table" << std::endl;
 		std::cout << "8) Insert clients to table from array" << std::endl;
+		std::cout << "10) Search array in table" << std::endl;
 		std::cout << "11) Erase clients from left to right" << std::endl;
 		std::cout << "12) Replace client in table from left to right" << std::endl;
 		std::cout << "13) Sort table from left to right" << std::endl;
@@ -72,6 +73,11 @@ int main() {
 		case 8:
 			std::cout << std::endl;
 			myT.Insert(myT.GetPntr(0), &arr[0], &arr[2]);
+			std::cout << std::endl;
+			break;
+		case 10:
+			std::cout << std::endl;
+			std::cout << "Client's index: " << myT.Describe(myT.Search(myT.Begin(), myT.End(), &arr[0], &arr[2])) << std::endl;
 			std::cout << std::endl;
 			break;
 		case 11:
