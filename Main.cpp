@@ -6,8 +6,9 @@ int main() {
 	std::cin >> size;
 	Table myT(size);
 	Client first, second;
-	Client F("a", "s", 2, 2), S("a", "s", 3, 2), Th("a", "s", 4, 2);
-	Client* arr[3] = { &F, &S ,&Th };
+	Client* F = new Client("a", "s", 1, 2), * S = new Client("a", "s", 1, 2), * Th = new Client("a", "s", 1, 2);
+	T arr[3] = { F, S, Th };
+
 	while (true) {
 		std::cout << "Select the program operation mode:" << std::endl;
 		std::cout << "1) Input table" << std::endl;
@@ -73,7 +74,13 @@ int main() {
 			break;
 		case 8:
 			std::cout << std::endl;
-			myT.Insert(myT.GetPntr(0), &arr[0], &arr[2]);
+			do {
+				std::cout << "Enter position where to insert new records from 0 to " << myT.Length() - 1 << ": ";
+				std::cin >> position;
+			} while (position < 0 || position > myT.Length() - 1);
+			if ((myT.End() - myT.Begin()) >= myT.GetSize())
+				myT.Resize(3);
+			myT.Insert(myT.GetPntr(position), &arr[0], &arr[2]);
 			std::cout << std::endl;
 			break;
 		case 9:
@@ -89,7 +96,7 @@ int main() {
 			break;
 		case 10:
 			std::cout << std::endl;
-			std::cout << "Client's index: " << myT.Describe(myT.Search(myT.Begin(), myT.End(), &arr[0], &arr[2])) << std::endl;
+			std::cout << "Client's array index: " << myT.Describe(myT.Search(myT.Begin(), myT.End(), &arr[0], &arr[2])) << std::endl;
 			std::cout << std::endl;
 			break;
 		case 11:

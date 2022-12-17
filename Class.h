@@ -36,6 +36,7 @@ public:
 	int GetSize();
 	T* Erase(T* pos);
 	void Clear();
+	void Resize(int plusSize);
 	T* Insert(const T& newClient);
 	int Input(T item);
 	void Output();

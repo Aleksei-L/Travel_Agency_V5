@@ -8,6 +8,7 @@ Table::Table(int s) {
 
 // Деструктор таблицы
 Table::~Table() {
+	Clear();
 	delete[] m;
 }
 
@@ -43,10 +44,24 @@ T* Table::Erase(T* pos) {
 // Удаление всех элементов в таблице
 void Table::Clear() {
 	for (T* i = m; i < current; i++) {
-		(*i)->dispose();
 		delete (*i);
 	}
 	current = m;
+}
+
+// Увеличение размера таблицы на plusSize элементов
+void Table::Resize(int plusSize) {
+	if (plusSize <= 0) {
+		std::cout << "Wrong size!" << std::endl;
+		return;
+	}
+	T* newM = new T[size + plusSize];
+	for (int i = 0; i < size; i++)
+		newM[i] = m[i];
+	current = &newM[size];
+	size = size + plusSize;
+	delete[] m;
+	m = newM;
 }
 
 // Вставка нового клиента в таблицу
@@ -59,6 +74,12 @@ T* Table::Insert(const T& newClient) {
 // Ввод таблицы
 int Table::Input(T item) {
 	int count;
+	if (Length() == GetSize()) {
+		std::cout << "Size over, enter new size: ";
+		int newSize;
+		std::cin >> newSize;
+		Resize(newSize * 2);
+	}
 	for (count = 0; Length() != GetSize(); count++) {
 		if (!item->input())
 			break;
@@ -143,9 +164,15 @@ int Table::Remove(const T& badClient) {
 
 // Вставка массива клиентов в таблицу
 T* Table::Insert(T* pos, T* first_item, T* last_item) {
-	if (Length() < size) {
-		for (T* i = first_item; i <= last_item; i++)
-			*current++ = (*i)->copy();
+	for (T* i = m; i < current; i++) {
+		if (i == pos) {
+			for (T* j = first_item; j <= last_item; j++) {
+				*current++ = (*(current - 1))->copy();
+				for (T* k = current - 2; k > i; k--)
+					*k = (*(k - 1))->copy();
+				*i++ = (*j)->copy();
+			}
+		}
 	}
 	return current;
 }
